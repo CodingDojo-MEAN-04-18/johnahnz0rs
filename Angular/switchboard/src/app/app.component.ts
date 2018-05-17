@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+    switches = [
+        { text: 'off', 'class': 'off'},
+        { text: 'off', 'class': 'off'},
+        { text: 'off', 'class': 'off'},
+        { text: 'off', 'class': 'off'},
+        { text: 'off', 'class': 'off'},
+        { text: 'off', 'class': 'off'},
+        { text: 'off', 'class': 'off'},
+        { text: 'off', 'class': 'off'},
+        { text: 'off', 'class': 'off'},
+        { text: 'off', 'class': 'off'}
+    ];
+    onButtonClick(id) {
+        // console.log(id);
+        if (this.switches[id].text == 'on') {
+            this.switches[id] = {text: 'off', 'class': 'off'};
+        } else {
+            this.switches[id] = {text: 'on', 'class': 'on'};
+        }
+    }
 }
