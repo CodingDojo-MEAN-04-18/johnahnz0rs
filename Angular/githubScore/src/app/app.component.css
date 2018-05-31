@@ -1,0 +1,12 @@
+.container {
+    width: 970px;
+    margin: 20px auto;
+}
+
+.my-form {
+    display: inline-block;
+}
+
+.score {
+    display: inline-block;
+}
