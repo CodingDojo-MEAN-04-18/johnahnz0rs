@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Book} from '../../book';
-import {BOOKS} from '../../data/book-data';
+import { Book } from '../../book';
+import { BookService } from '../../services/book.service';
+
 
 import { TitleizePipe } from '../../titleize.pipe';
 
@@ -12,13 +13,21 @@ import { TitleizePipe } from '../../titleize.pipe';
 })
 export class BookListComponent implements OnInit {
 
-    books: Array<Book> = BOOKS;
+    books: Array<Book> = [];
     selectedBook: Book;
     filter: Book = new Book(false);
 
-    constructor(private titleize: TitleizePipe) { }
+    constructor(private titleize: TitleizePipe,
+                private bookService: BookService
+    ) { }
+
+
 
     ngOnInit() {
+        this.bookService.getBooks()
+            .subscribe(books => this.books = books);
+
+
         this.books.forEach(book => {
             book.author = this.titleize.transform(book.author);
         });
@@ -43,6 +52,22 @@ export class BookListComponent implements OnInit {
     clearFilter(): void {
         console.log('we are clearing filter');
         this.filter = new Book(false);
+    }
+
+    onClick(event: Event) {
+        event.stopPropagation();
+    }
+
+    onDelete(id: number ) {
+        console.log('delete book', id);
+        this.bookService.deleteBook(id)
+            .subscribe(returnedBook => {
+                console.log(returnedBook);
+
+                this.books = this.books.filter(b => {
+                    b.id !== returnedBook.id;
+                });
+            });
     }
 
 }

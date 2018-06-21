@@ -1,6 +1,7 @@
-<app-book-new (createBook)="onCreate($event)"></app-book-new>
+<!--<app-book-new (createBook)="onCreate($event)"></app-book-new>-->
 
-<section class="scheduler-border">
+<section class="scheduler-border" id="books-list">
+    <h2>Books List</h2>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -27,12 +28,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let book of books | search:filter" (click)="selectBook(book)">
+        <tr *ngFor="let book of books | search:filter" (click)="selectBook(book)" [routerLink]="[book.id]">
             <td>{{ book?.id }}</td>
             <td>{{ book?.title | titleize }}</td>
             <td>{{ book?.year }}</td>
             <td>{{ book?.author | titleize }}</td>
-            <td>Future Actions</td>
+            <td (click)="onClick($event)">
+                <button class="btn btn-danger" (click)="onDelete(book.id)">Delete</button>
+            </td>
         </tr>
         </tbody>
 
@@ -40,4 +43,4 @@
 </section>
 
 
-<app-book-detail [book]="selectedBook"></app-book-detail>
+<app-book-detail *ngIf="selectedBook" [book]="selectedBook"></app-book-detail>

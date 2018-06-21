@@ -12,4 +12,5 @@ export class DataService {
     getScore(url) {
         return this._http.get(url);
     }
+
 }

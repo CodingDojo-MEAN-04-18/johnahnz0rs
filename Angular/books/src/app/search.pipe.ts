@@ -7,18 +7,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SearchPipe implements PipeTransform {
 
     transform<T extends object>(elements: T[], filter: T): Array<T> {
-        console.log('searching', elements);
-
-
+        // console.log('searching', elements);
         if (!elements || !filter) {
             return elements;
         }
 
-
-
         return elements.filter(element => this.applyFilter(element, filter));
-
-
     }
 
     private applyFilter<T>(element: T, filter: T): boolean {

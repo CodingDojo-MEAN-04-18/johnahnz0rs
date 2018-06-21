@@ -1,29 +1,31 @@
-import {BrowserModule, Title} from '@angular/platform-browser';
+import { BrowserModule, Title} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { BookDetailComponent } from './books/book-detail/book-detail.component';
-import { BookListComponent } from './books/book-list/book-list.component';
-import { BookNewComponent } from './books/book-new/book-new.component';
+import * as fromBooks from './books';
 
-import {TitleizePipe} from './titleize.pipe';
+import { TitleizePipe } from './titleize.pipe';
 import { SearchPipe } from './search.pipe';
+
+import { BookService } from './services/book.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        BookDetailComponent,
-        BookListComponent,
-        BookNewComponent,
+        ...fromBooks.components,
         TitleizePipe,
         SearchPipe
     ],
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule
     ],
-    providers: [],
+    providers: [BookService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
