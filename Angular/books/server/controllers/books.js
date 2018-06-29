@@ -1,7 +1,3 @@
-// const mongoose = require('mongoose');
-// const Book = mongoose.model('Book');
-
-
 const Book = require('mongoose').model('Book');
 
 
@@ -17,7 +13,7 @@ module.exports = {
             .catch(console.log);
     },
     update(request, response) {
-        Book.findByIdandUpdate(request.params.bookID, request, body, {new: true})
+        Book.findByIdandUpdate(request.params.bookID, request.body, {new: true})
             .then(book => response.json(book))
             .catch(console.log);
     },
@@ -31,7 +27,7 @@ module.exports = {
             });
     },
     destroy(request, response) {
-        Book.findByIdandRemove(request.params.bookID)
+        Book.findByIdAndRemove(request.params.bookID)
             .then(book => response.json(book))
             .catch(console.log);
     }

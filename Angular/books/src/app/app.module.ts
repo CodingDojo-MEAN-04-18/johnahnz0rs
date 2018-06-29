@@ -12,6 +12,8 @@ import { SearchPipe } from './search.pipe';
 import { BookService } from './services/book.service';
 import { AppRoutingModule } from './app-routing.module';
 
+import { BookResolve } from './resolvers';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -25,7 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
         HttpClientModule,
         AppRoutingModule
     ],
-    providers: [BookService],
+    providers: [BookService, BookResolve],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

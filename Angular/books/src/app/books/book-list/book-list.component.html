@@ -2,6 +2,9 @@
 
 <section class="scheduler-border" id="books-list">
     <h2>Books List</h2>
+    <a [routerLink]="['/books', 'new']">
+        <button id="new-button" class="float-right">Add New Book</button>
+    </a>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -29,7 +32,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let book of books | search:filter" (click)="selectBook(book)" [routerLink]="[book.id]">
-            <td>{{ book?.id }}</td>
+            <td>{{ book?._id }}</td>
             <td>{{ book?.title | titleize }}</td>
             <td>{{ book?.year }}</td>
             <td>{{ book?.author | titleize }}</td>

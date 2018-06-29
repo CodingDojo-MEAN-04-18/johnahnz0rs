@@ -12,8 +12,8 @@ import { BOOKS } from '../data/book-data';
 
 @Injectable()
 export class BookService {
-    private base = 'http://59498bce6d49df0011102cfc.mockapi.io/books';
-    // private base = 'api/books';
+    // private base = 'http://59498bce6d49df0011102cfc.mockapi.io/books';
+    private base = 'api/books';
 
 
     constructor(private http: HttpClient) {}

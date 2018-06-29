@@ -38,6 +38,9 @@ export class BookDetailComponent implements OnInit {
                     }, 1000);
                 }
             );
+        // this.book = this.route.snapshot.data.book as Book;
+
+
 
 
         // this one also works but it's weird

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import * as fromBooks from './books';
+import {BookResolve} from './resolvers';
 
 const routes: Routes = [
     {
@@ -14,6 +15,11 @@ const routes: Routes = [
         component: fromBooks.BookListComponent,
         children: [
             {
+                path: '',
+                pathMatch: 'full',
+                component: fromBooks.BookListComponent
+            },
+            {
                 path: 'new',
                 pathMatch: 'full',
                 component: fromBooks.BookNewComponent
@@ -21,7 +27,10 @@ const routes: Routes = [
             {
                 path: ':bookID',
                 pathMatch: 'full',
-                component: fromBooks.BookDetailComponent
+                component: fromBooks.BookDetailComponent,
+                resolve: {
+                    book: BookResolve
+                }
             }
         ]
     }
@@ -34,6 +43,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule { }

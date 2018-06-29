@@ -1,5 +1,3 @@
-
-
 const mongoose = require('mongoose');
 const path = require('path');
 const fs = require('fs');
@@ -12,7 +10,7 @@ mongoose.connect('mongodb://localhost/books');
 mongoose.connection.on('connected', () => console.log('connected to mongodb'));
 
 
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 
 fs.readdirSync(modelsPath).forEach(file => {
